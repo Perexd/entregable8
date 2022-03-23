@@ -33,6 +33,7 @@ public class AudioManager : MonoBehaviour
     public void CancioNombre()
     {
         tituloCancion.text = source.clip.name;
+        
         FullLenght = (int)source.clip.length;
     }
     //reproduce la siguinte cancion de la lista
@@ -89,7 +90,9 @@ public class AudioManager : MonoBehaviour
     {
         source.clip = listaDeCanciones[Random.Range(0, listaDeCanciones.Length)];
         source.Play();
+
         CancioNombre();
+
         StartCoroutine("FinCancion");
     }
 
