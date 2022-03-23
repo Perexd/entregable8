@@ -19,7 +19,7 @@ public class AudioManager : MonoBehaviour
         source = GetComponent<AudioSource>();
     }
 
-    
+    //cuando acaba una cancion se reproduce la siguiente
     IEnumerator FinCancion()
     {
         while (source.isPlaying)
@@ -28,8 +28,14 @@ public class AudioManager : MonoBehaviour
         }
         Siguiente();
     }
-
     
+    //en el tecto de abajo de los botones sale en nombre de la cancion
+    public void CancioNombre()
+    {
+        tituloCancion.text = source.clip.name;
+        FullLenght = (int)source.clip.length;
+    }
+    //reproduce la siguinte cancion de la lista
     public void Siguiente()
     {
         source.Stop();
@@ -46,7 +52,7 @@ public class AudioManager : MonoBehaviour
         StartCoroutine("FinCancion");
     }
 
-    
+    //reproduce la cancion anterior
     public void AnteriorCancion()
     {
         source.Stop();
@@ -62,15 +68,7 @@ public class AudioManager : MonoBehaviour
 
         StartCoroutine("FinCancion");
     }
-
- 
-    public void Pausar()
-    {
-        StopCoroutine("WaitForMusicEnd");
-        source.Pause();
-    }
-
-  
+    //inicia la reproducion
     public void Reproductor()
     {
         if (source.isPlaying)
@@ -86,7 +84,7 @@ public class AudioManager : MonoBehaviour
         StartCoroutine("FinCancion");
     }
 
-    
+    //cancion Aleatoria
     public void Aletorio()
     {
         source.clip = listaDeCanciones[Random.Range(0, listaDeCanciones.Length)];
@@ -95,10 +93,6 @@ public class AudioManager : MonoBehaviour
         StartCoroutine("FinCancion");
     }
 
-  
-    public void CancioNombre()
-    {
-        tituloCancion.text = source.clip.name;
-        FullLenght = (int)source.clip.length;
-    }
+  //el boton de stop no me funcionaba 
+    
 }
